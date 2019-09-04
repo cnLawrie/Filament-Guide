@@ -1,0 +1,23 @@
+{
+    "name": "filament",
+    "version": "1.0.0",
+    "description": "Share the experience of exploring the Filament.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "deploy": "gh-pages -d build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cnLawrie/Filament.git"
+    },
+    "author": "Lawrie",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/cnLawrie/Filament/issues"
+    },
+    "homepage": "https://github.com/cnLawrie/Filament#readme",
+    "devDependencies": {
+        "gh-pages": "^2.1.1"
+    }
+}
