@@ -96,4 +96,52 @@ Filament.RenderableManager.Builder(1)
     .build(engine, this.triangle)
 ```
 
+接下来让我们通过创建交换链，渲染器，相机和视图来结束初始化。
+```
+this.swapChain = engine.createSwapChain()
+this.renderer = engine.createRenderer()
+this.camera = engine.createCamera()
+this.view = engine.createView()
+this.view.setCamera(this.camera)
+this.view.setScene(this.scene)
+this.view.setClearColor([0.1, 0.2, 0.3, 1.0])
+this.resize()
+```
+目前我们已经创造出了所有的Filament个体。然而，canvas依然是空白的。
 
+6. 渲染和调整大小
+render方法会每秒调用60次
+```
+render() {
+    // TODO: render scene
+    window.requestAnimationFrame(this.render);
+}
+```
+
+让我们在render方法内渲染旋转着的三角形
+```
+// Rotate the triangle.
+const radians = Date.now() / 1000;
+const transform = mat4.fromRotation(mat4.create(), radians, [0, 0, 1]);
+const tcm = this.engine.getTransformManager();
+const inst = tcm.getInstance(this.triangle);
+tcm.setTransform(inst, transform);
+inst.delete();
+
+// Render the frame.
+this.renderer.render(this.swapChain, this.view);
+```
+render方法内的前一部分代码获取了要进行旋转的三角形个体，并使用gl-matrix库创建出了一个旋转矩阵。
+后一部分代码在视图上启用了Filament的renderer（渲染器），并且让Filament引擎执行它内部缓冲区中的代码。
+
+最后一步，把以下代码加入resize方法。当窗口尺寸变化时，会自动调整渲染层的分辨率,用*devicePixelRatio*将高分辨率屏幕考虑在内。同时会相应地调整摄像机的透视投影。
+```
+const dpr = window.devicePixelRatio
+const width = this.canvas.width = window.innerWidth * dpr
+const height = this.canvas.height = window.innerHeight * dpr
+this.view.setViewport([0, 0, width, height]);
+
+const aspect = width / height;
+const Projection = Filament.Camera$Projection;
+this.camera.setProjection(Projection.ORTHO, -aspect, aspect, -1, 1, 0, 1);
+```
