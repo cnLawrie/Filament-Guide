@@ -20,9 +20,41 @@
 </body>
 </html>
 ```
-其中
-    - filament.js用于下载相关资源和编译Filament WASM模块，并且包含了一些工具，比如加载KTX纹理。
+其中  
+    - filament.js用于下载相关资源和编译Filament WASM模块，并且包含了一些工具，比如加载KTX纹理。  
     - gl-matrix-min.js 是一个数学库，包含了对向量、矩阵的处理工具
+
+继续新建triangle.js文件，并加入以下代码
+```
+Filament.init([ 'nonlit.filamat' ], () => {
+    window.VertexAttribute = Filament.VertexAttribute
+    window.AttributeType = Filament.VertexBuffer$AttributeType
+    window.Projection = Filament.Camera$Projection
+    window.app = new App(document.getElementsByTagName('canvas')[0])
+})
+
+class App {
+    constructor(canvas) {
+        this.canvas = canvas
+        //  此处将要放入创建Entities的代码
+        this.render = this.render.bind(this);
+        this.resize = this.resize.bind(this);
+        window.addEventListener('resize', this.resize);
+        window.requestAnimationFrame(this.render);
+    }
+    render() {
+        // 此处将要放入渲染场景的代码
+        window.requestAnimationFrame(this.render);
+    }
+    resize() {
+        // 此处将要放入调整视窗和canvas的代码
+    }
+}
+```
+Filament接手两个参数：一个包含一系列资源URL的数组和一个callback
+当所有资源下载完成且Filament模块加载完成后，才会调用callback。
+在callback中实例花了App对象并绑定在window对象上
+triangle.filamat是一个包含了shader和定义PBR材质的二进制文件
 
 2. 在目录下启动一个静态服务器
 ```
@@ -35,7 +67,6 @@ npx http-server -p 8000    # nodejs
 现在我们已经有了一个基本框架，可以添加Filament对象了。
 在App的构造函数中添加：
 ```
-this.canvas = document.getElementsById('canvas')
 const engine = this.engine = Filament.Engine.create(this.canvas)
 ```
 引擎需要canvas Dom对象作为参数来创造一个WebGL 2.0的上下文对象。该engine变量是一个工厂，可以用来创建许多Filament个体，如场景。下面添加一个叫做triangle的空白个体。
@@ -87,7 +118,7 @@ this.ib.setBuffer(engine, new Uint16Array([0, 1, 2]));
 5. 结束初始化
 下一步，我们会创建一个材质包中的真实材质（该材质是一个对象，材质包是一个二进制Blob），然后从材质对象中提取出默认的MaterialInstance。在取出材质实例化对象后，我们设置好边界框并传入顶点和索引缓冲区，我们终于可以把它渲染出来了。
 ```
-const mat = engine.createMaterial('triangle.filamat')
+const mat = engine.createMaterial('nonlit.filamat')
 const matinst = mat.getDefaultInstance()
 Filament.RenderableManager.Builder(1)
     .boundingBox({ center: [-1, -1, -1], halfExtent: [1, 1, 1]})
@@ -106,6 +137,8 @@ this.view.setCamera(this.camera)
 this.view.setScene(this.scene)
 this.view.setClearColor([0.1, 0.2, 0.3, 1.0])
 this.resize()
+
+window.requestAnimationFrame(this.render);
 ```
 目前我们已经创造出了所有的Filament个体。然而，canvas依然是空白的。
 
