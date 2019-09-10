@@ -26,17 +26,10 @@ n<sub>ior</sub> | 界面的折射率（IOR）
 ⟨n⋅l⟩ | 点分量夹逼到[0..1]
 ⟨a⟩ | 饱和值（夹逼到[0..1]）
 
-# Fresnel(菲涅尔效应)
-菲涅尔效应模拟了观察者从一个表面上看到的反射光数量取决于观察角度。
-例如，当你看一个水池时，如果你已经在水面上，低头向下看可以直接看到水底，如果你离那个水池有一定距离,此时你可以看到水面上强烈的镜面反射。
-![](assets/material/photo_fresnel_lake.png)
-反射光的数量不仅取决于观察角度，还取决于材料的折射率(IOR)。对于光滑材料,返回的光量接近100%。
-菲涅尔公式定义了光在两个不同介质中间的表面上是如何反射和折射的。
-```
-vec3 F_Schlick(float VoH, vec3 f0, float f90) {
-    return f0 + (vec3(f90) - f0) * pow(1.0 - VoH, 5.0);
-}
-```
+## 入射角与掠射角
+- 入射角(angle of incidence)
+- 掠射角(grazing angle)
+![](./assets/basis/grazingAndIncidenceAngles.png)
 
 # Diffuse BRDF
 

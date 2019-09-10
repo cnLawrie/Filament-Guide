@@ -57,11 +57,74 @@ G<sub>1</sub>可以依次遵循几个模型，通常设置为GGX公式：
 
 ![Smith-GGX](../../assets/material/4.4/Smith-GGX.png)   
 
-显然通过引入可以让我们很容易地简化原公式分开的2(n · l)和2(n · v)
+因为在分子上有2(n · l)和2(n · v)相乘，通过引入可见性函数V可以让我们很容易地简化原公式
 
+![intro_v](../../assets/material/4.4/intro_v.png)   
 
+其中V函数为：
+![vfunction](../../assets/material/4.4/vfunction.png)   
 
+同时
+![v1function](../../assets/material/4.4/v1function.png)   
 
+Heitz还提到如果将微平面的高度与掩蔽、遮蔽的关系考虑在内会得到更准确的结果。因此他定义了高度相关的Smith函数：
 
+![height-correlatedSmithfunction](../../assets/material/4.4/height-correlatedSmithFunction.png)   
+
+将θ<sub>m</sub>替换为n · v, 我们会得到：
+
+![θmTonv](../../assets/material/4.4/θmTonv.png)   
+
+演算得到：
+
+![final](../../assets/material/4.4/final.png)   
+
+对可见性函数的GLSL实现如下，因为其中有两个开方运算，所以在运算成本上会有点高。
+```
+float V_SmithGGXCorrelated(float NoV, float NoL, float roughness) {
+    float a2 = roughness * roughness;
+    float GGXV = NoL * sqrt(NoV * NoV * (1.0 - a2) + a2);
+    float GGXL = NoV * sqrt(NoL * NoL * (1.0 - a2) + a2);
+    return 0.5 / (GGXV + GGXL);
+}
+```
+
+因为在根号中的数都有进行平方运算，并且他们的值都在[0,1]内，我们可以对可见性函数做一个近似：
+
+![appro_visi_func](../../assets/material/4.4/appro_visi_func.png)  
+这个近似在数学上还说是错误的，但是减少了两个开方操作，并且这个近似在移动应用上进行实时渲染是足够用的。
+GLSL的实现：
+```
+float V_SmithGGXCorrelated(float NoV, float NoL, float roughness) {
+    float a2 = roughness * roughness
+    float GGXV = NoL * (NoV * (1.0 - a) + a)
+    float GGXL = NoV * (NoL * (1.0 - a) + a)
+    return 0.5 / (GGXV + GGXL)
+}
+```
+
+## 菲涅尔(镜面大F)
+菲涅尔效应在基于物理模拟的材质上至关重要。该效应模拟了一个现象：观察者从一个表面上看到的反射光数量取决于观察角度。
+例如，当你看一个水池时，如果你已经在水面上，低头向下看可以直接看到水底，如果你离那个水池有一定距离,此时你可以看到水面上强烈的镜面反射。
+![photo_fresnel_lake](../../assets/material/4.4/photo_fresnel_lake.jpg)
+
+反射光的数量不仅取决于观察角度，还取决于材质的折射率(IOR)。对于光滑材料,返回的光量接近100%。若有一束入射光（方向垂直于表面，或者说入射角为0），则把它的反射光记为f<sub>0</sub>,并且它可以从折射率计算得出。  
+
+菲涅尔公式定义了光在两个不同介质中间的表面上是如何反射和折射的，或者是反射光与入射光能量之比。
+[Schlick](#Schlick94)描述了一个Cook-Torrance镜面BRDF中对菲涅尔效应的近似，这个近似减小了开销。
+
+![Schlick94](../../assets/material/4.4/Schlick94.png)
+其中常量f<sub>0</sub>代表了入射光的镜面反射，并且其会在电解质上消色，在金属体上  保留彩色。其真实值取决于表面的折射率。
+下面是GLSL实现：
+```
+vec3 F_Schlick(float VoH, vec3 f0, float f90) {
+    return f0 + (vec3(f90) - f0) * pow(1.0 - VoH, 5.0);
+}
+```
+
+菲涅尔函数可以被视为在入射光的反射率和掠射角的反射率之间的插值，这里用
+f<sub>90</sub>表示。
+现实世界中的材质中无论是电介质还是导体都是
 
 <span id="Heitz"> Eric Heitz. 2014. Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs. Journal of Computer Graphics Techniques, 3 (2).</span>
+<span id="Schlick94"> Eric Heitz. 2014. Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs. Journal of Computer Graphics Techniques, 3 (2).</span>
