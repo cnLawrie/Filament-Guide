@@ -34,6 +34,11 @@ n<sub>ior</sub> | 界面的折射率（IOR）
 ## diffuse lobe & specular lobe
 ![](./assets/basis/DiffuesLobe&SpecularLobe.jpg)
 
+## 在图形学中什么是lobe
+lobe是定义在直角坐标或极坐标中函数的一个峰值。如cos函数，在0或2pi可以取得峰值。
+在照明中，lobe通常对应于反射光的方向，越高的lobe意味着更多的光量。
+
+
 # Diffuse BRDF
 
 ```
