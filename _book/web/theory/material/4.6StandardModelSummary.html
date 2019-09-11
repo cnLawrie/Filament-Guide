@@ -1,0 +1,477 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>镜面BRDF · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="4.7ImprovingTheBRDFs.html" />
+    
+    
+    <link rel="prev" href="4.5DiffuseBRDF.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../introduction.html">
+            
+                <a href="../../introduction.html">
+            
+                    
+                    web
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    理论知识
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    材质
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1.1" data-path="4.1StandardModel.html">
+            
+                <a href="4.1StandardModel.html">
+            
+                    
+                    标准模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.2" data-path="4.2Dielectrics&conductors.html">
+            
+                <a href="4.2Dielectrics&conductors.html">
+            
+                    
+                    电介质和导体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.3" data-path="4.3EnergyConservation.html">
+            
+                <a href="4.3EnergyConservation.html">
+            
+                    
+                    能量守恒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.4" data-path="4.4SpecularBRDF.html">
+            
+                <a href="4.4SpecularBRDF.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.5" data-path="4.5DiffuseBRDF.html">
+            
+                <a href="4.5DiffuseBRDF.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.1.6" data-path="4.6StandardModelSummary.html">
+            
+                <a href="4.6StandardModelSummary.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.7" data-path="4.7ImprovingTheBRDFs.html">
+            
+                <a href="4.7ImprovingTheBRDFs.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../gitbook.md">
+            
+                <span>
+            
+                    
+                    构建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../example.html">
+            
+                <a href="../../example.html">
+            
+                    
+                    例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../source.html">
+            
+                <a href="../../source.html">
+            
+                    
+                    源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../problems.html">
+            
+                <a href="../../problems.html">
+            
+                    
+                    问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >镜面BRDF</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x6807;&#x51C6;&#x6A21;&#x578B;&#x603B;&#x7ED3;">&#x6807;&#x51C6;&#x6A21;&#x578B;&#x603B;&#x7ED3;</h1>
+<p>&#x9AD8;&#x5149;&#x65B9;&#x9762;&#xFF1A;Cook-Torrance&#x9AD8;&#x5149;&#x5FAE;&#x5E73;&#x9762;&#x6A21;&#x578B;&#x7531;&#x4E09;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF1A;GGX&#x6B63;&#x6001;&#x5206;&#x5E03;&#x51FD;&#x6570;&#xFF0C;&#x9AD8;&#x5EA6;&#x76F8;&#x5173;&#x7684;Smith-GGX&#x53EF;&#x89C1;&#x6027;&#x51FD;&#x6570;&#xFF0C;Schlick Fresnel&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x6F2B;&#x53CD;&#x5C04;&#x65B9;&#x9762;&#xFF1A;Lambertian&#x6F2B;&#x53CD;&#x5C04;&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x6807;&#x51C6;&#x6A21;&#x578B;&#x7684;GLSL&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code>float D_GGX(float NoH, float a) {
+    float a2 = a * a;
+    float f = (NoH * a2 - NoH) * NoH + 1.0;
+    return a2 / (PI * f * f);
+}
+
+vec3 F_Schlick(float VoH, vec3 f0) {
+    return f0 + (vec3(1.0) - f0) * pow(1.0 - VoH, 5.0);
+}
+
+float V_SmithGGXCorrelated(float NoV, float NoL, float a) {
+    float a2 = a * a;
+    float GGXL = NoV * sqrt((-NoL * a2 + NoL) * NoL + a2);
+    float GGXV = NoL * sqrt((-NoV * a2 + NoV) * NoV + a2);
+    return 0.5 / (GGXV + GGXL);
+}
+
+float Fd_Lambert() {
+    return 1.0 / PI;
+}
+
+void BRDF(...) {
+    vec3 h = normalize(v + l);
+
+    float NoV = abs(dot(n, v)) + 1e-5;
+    float NoL = clamp(dot(n, l), 0.0, 1.0);
+    float NoH = clamp(dot(n, h), 0.0, 1.0);
+    float LoH = clamp(dot(l, h), 0.0, 1.0);
+
+    // perceptually linear roughness to roughness (see parameterization)
+    float roughness = perceptualRoughness * perceptualRoughness;
+
+    float D = D_GGX(NoH, a);
+    vec3  F = F_Schlick(LoH, f0);
+    float V = V_SmithGGXCorrelated(NoV, NoL, roughness);
+
+    // specular BRDF
+    vec3 Fr = (D * V) * F;
+
+    // diffuse BRDF
+    vec3 Fd = diffuseColor * Fd_Lambert();
+
+    // apply lighting...
+}
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="4.5DiffuseBRDF.html" class="navigation navigation-prev " aria-label="Previous page: 镜面BRDF">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="4.7ImprovingTheBRDFs.html" class="navigation navigation-next " aria-label="Next page: 镜面BRDF">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"镜面BRDF","level":"1.2.1.1.6","depth":4,"next":{"title":"镜面BRDF","level":"1.2.1.1.7","depth":4,"path":"web/theory/material/4.7ImprovingTheBRDFs.md","ref":"web/theory/material/4.7ImprovingTheBRDFs.md","articles":[]},"previous":{"title":"镜面BRDF","level":"1.2.1.1.5","depth":4,"path":"web/theory/material/4.5DiffuseBRDF.md","ref":"web/theory/material/4.5DiffuseBRDF.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"web/theory/material/4.6StandardModelSummary.md","mtime":"2019-09-11T12:25:41.104Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-11T15:23:41.979Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
