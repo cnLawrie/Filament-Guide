@@ -1,0 +1,459 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>镜面BRDF · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../gitbook.md" />
+    
+    
+    <link rel="prev" href="4.6StandardModelSummary.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../introduction.html">
+            
+                <a href="../../introduction.html">
+            
+                    
+                    web
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    理论知识
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    材质
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1.1" data-path="4.1StandardModel.html">
+            
+                <a href="4.1StandardModel.html">
+            
+                    
+                    标准模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.2" data-path="4.2Dielectrics&conductors.html">
+            
+                <a href="4.2Dielectrics&conductors.html">
+            
+                    
+                    电介质和导体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.3" data-path="4.3EnergyConservation.html">
+            
+                <a href="4.3EnergyConservation.html">
+            
+                    
+                    能量守恒
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.4" data-path="4.4SpecularBRDF.html">
+            
+                <a href="4.4SpecularBRDF.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.5" data-path="4.5DiffuseBRDF.html">
+            
+                <a href="4.5DiffuseBRDF.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.1.6" data-path="4.6StandardModelSummary.html">
+            
+                <a href="4.6StandardModelSummary.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.1.7" data-path="4.7ImprovingTheBRDFs.html">
+            
+                <a href="4.7ImprovingTheBRDFs.html">
+            
+                    
+                    镜面BRDF
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../gitbook.md">
+            
+                <span>
+            
+                    
+                    构建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../example.html">
+            
+                <a href="../../example.html">
+            
+                    
+                    例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../source.html">
+            
+                <a href="../../source.html">
+            
+                    
+                    源码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../problems.html">
+            
+                <a href="../../problems.html">
+            
+                    
+                    问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >镜面BRDF</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x4F18;&#x5316;brdfs">&#x4F18;&#x5316;BRDFs</h1>
+<p>&#x6211;&#x4EEC;&#x5728;&#x524D;&#x9762;&#x63D0;&#x8FC7;&#x80FD;&#x91CF;&#x5B88;&#x6052;&#x662F;&#x4E00;&#x4E2A;&#x4F18;&#x79C0;&#x7684;BRDF&#x7684;&#x5173;&#x952E;&#x6307;&#x6807;&#x4E4B;&#x4E00;&#x3002;&#x4E0D;&#x5E78;&#x7684;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x5176;&#x4E2D;&#x6D4B;&#x8BD5;&#x5230;&#x4E86;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4E0B;&#x9762;&#x5C06;&#x8BA8;&#x8BBA;&#x8FD9;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#x6F2B;&#x53CD;&#x5C04;&#x80FD;&#x91CF;&#x589E;&#x76CA;">&#x6F2B;&#x53CD;&#x5C04;&#x80FD;&#x91CF;&#x589E;&#x76CA;</h2>
+<p>&#x5F85;&#x7EED;</p>
+<h2 id="&#x955C;&#x9762;&#x53CD;&#x5C04;&#x4E2D;&#x7684;&#x80FD;&#x91CF;&#x6D41;&#x5931;">&#x955C;&#x9762;&#x53CD;&#x5C04;&#x4E2D;&#x7684;&#x80FD;&#x91CF;&#x6D41;&#x5931;</h2>
+<p>&#x6211;&#x4EEC;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;Cook-Torrance BRDF&#x5C1D;&#x8BD5;&#x53BB;&#x6A21;&#x62DF;&#x5728;&#x5FAE;&#x5E73;&#x9762;&#x5C42;&#x9762;&#x4E0A;&#x7684;, &#x4F46;&#x90A3;&#x662F;&#x5EFA;&#x7ACB;&#x5728;&#x5355;&#x6B21;&#x53CD;&#x5C04;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x7684;&#x3002;&#x5728;&#x5355;&#x6B21;&#x53CD;&#x5C04;&#x6A21;&#x62DF;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x4E00;&#x675F;&#x5149;&#x5728;&#x5C04;&#x5728;&#x67D0;&#x4E00;&#x5E73;&#x9762;&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x53CD;&#x5C04;&#x56DE;&#x53E6;&#x4E00;&#x4E2A;&#x5E73;&#x9762;&#xFF0C;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#x5B83;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x3002;&#x5982;&#x679C;&#x662F;&#x591A;&#x6B21;&#x53CD;&#x5C04;&#x6A21;&#x62DF;&#xFF0C;&#x540C;&#x6837;&#x4E00;&#x675F;&#x5149;&#x53EF;&#x4EE5;&#x5728;&#x4E24;&#x6B21;&#x6216;&#x4E24;&#x6B21;&#x4EE5;&#x4E0A;&#x53CD;&#x5C04;&#x540E;&#x79BB;&#x5F00;&#x5E73;&#x9762;&#xFF0C;&#x8FDB;&#x5165;&#x89C2;&#x5BDF;&#x8005;&#x773C;&#x4E2D;&#x3002;</p>
+<p><img src="../../assets/material/4.7/diagram_single_vs_multi_scatter.png" alt="diagram_single_vs_multi_scatter">
+&#x5355;&#x6B21;&#x6563;&#x5C04; VS &#x591A;&#x6B21;&#x6563;&#x5C04;</p>
+<p>&#x57FA;&#x4E8E;&#x4E0A;&#x9762;&#x7684;&#x89E3;&#x91CA;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x4E0D;&#x7531;&#x81EA;&#x4E3B;&#x5730;&#x60F3;&#x5230;&#xFF0C;&#x5728;&#x975E;&#x591A;&#x6B21;&#x6563;&#x5C04;&#x6A21;&#x62DF;&#x4E0B;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x8868;&#x9762;&#x8D8A;&#x7C97;&#x7CD9;&#xFF0C;&#x5165;&#x5C04;&#x5149;&#x6D41;&#x5931;&#x7684;&#x80FD;&#x91CF;&#x8D8A;&#x591A;&#x3002;&#x8FD9;&#x79CD;&#x80FD;&#x91CF;&#x635F;&#x5931;&#x53EF;&#x80FD;&#x4F1A;&#x4F7F;&#x7C97;&#x7CD9;&#x7684;&#x6750;&#x8D28;&#x53D8;&#x6697;&#x3002;&#x91D1;&#x5C5E;&#x8868;&#x9762;&#x53D7;&#x5F71;&#x54CD;&#x7279;&#x522B;&#x5927;&#xFF0C;&#x56E0;&#x4E3A;&#x4ED6;&#x53EA;&#x6709;&#x955C;&#x9762;&#x53CD;&#x5C04;&#x3002;</p>
+<p>&#x4E0B;&#x56FE;&#x5C55;&#x793A;&#x4E86;&#x8FD9;&#x79CD;&#x53D8;&#x6697;&#x6548;&#x5E94;&#xFF1A;
+<img src="../../assets/material/4.7/material_metallic_energy_loss.png" alt="material_metallic_energy_loss">
+&#x5355;&#x6B21;&#x53CD;&#x5C04;&#xFF1A;&#x968F;&#x7740;&#x7C97;&#x7CD9;&#x5EA6;&#x589E;&#x52A0;&#xFF0C;&#x53D8;&#x6697;&#x6548;&#x5E94;&#x8D8A;&#x6765;&#x8D8A;&#x660E;&#x663E;</p>
+<p>&#x4E0B;&#x56FE;
+<img src="../../assets/material/4.7/material_metallic_energy_preservation.png" alt="material_metallic_energy_preservation">
+&#x591A;&#x6B21;&#x53CD;&#x5C04;&#xFF1A;&#x9632;&#x6B62;&#x4E86;&#x80FD;&#x91CF;&#x6D41;&#x5931;</p>
+<p>&#x6211;&#x4EEC;&#x518D;&#x505A;&#x4E00;&#x4E2A;&#x5B9E;&#x9A8C;&#x6765;&#x9A8C;&#x8BC1;&#x4E00;&#x4E0B;&#x3002;&#x6211;&#x4EEC;&#x628A;&#x4E00;&#x4E2A;&#x91D1;&#x5C5E;&#x7403;&#x4F53;&#x7F6E;&#x4E8E;&#x4E00;&#x4E2A;&#x5145;&#x6EE1;&#x4E00;&#x81F4;&#x7684;&#x7EAF;&#x767D;&#x73AF;&#x5883;&#x5149;&#x7684;&#x73AF;&#x5883;&#x4E2D;&#x3002;&#x5982;&#x679C;&#x6709;&#x6CA1;&#x6709;&#x80FD;&#x91CF;&#x6D41;&#x5931;&#x65F6;&#xFF0C;&#x5B83;&#x7684;&#x91D1;&#x5C5E;&#x8868;&#x9762;(f<sub>0</sub> = 1)&#x5E94;&#x8BE5;&#x59CB;&#x7EC8;&#x65E0;&#x6CD5;&#x4E0E;&#x80CC;&#x666F;&#x533A;&#x5206;&#x5F00;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4F60;&#x5E94;&#x8BE5;&#x770B;&#x4E0D;&#x5230;&#x8FD9;&#x4E2A;&#x7403;&#x4F53;&#x3002;</p>
+<p><img src="../../assets/material/4.7/material_furnace_energy_loss.png" alt="material_furnace_energy_loss">
+&#x5355;&#x6B21;&#x53CD;&#x5C04;&#xFF1A;&#x53D8;&#x6697;&#x6548;&#x5E94;&#x8D8A;&#x6765;&#x8D8A;&#x660E;&#x663E;</p>
+<p><img src="../../assets/material/4.7/material_furnace_energy_preservation.png" alt="material_furnace_energy_preservation">
+&#x591A;&#x6B21;&#x53CD;&#x5C04;&#xFF1A;&#x80FD;&#x91CF;&#x4FDD;&#x5B58;</p>
+<p>&#x4E00;&#x822C;&#x7684;&#x591A;&#x53CD;&#x5C04;&#x5FAE;&#x5E73;&#x9762;BRDF&#x5E76;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x5B9E;&#x65F6;&#x6E32;&#x67D3;&#x3002;Kulla and Conty&#x53E6;&#x8F9F;&#x8E4A;&#x5F84;<a href="#Kulla17">Kulla17</a>,&#x4ED6;&#x4EEC;&#x8FDB;&#x884C;&#x4E86;&#x80FD;&#x91CF;&#x8865;&#x507F;&#x3002;&#x516C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;
+<img src="../../assets/material/4.7/Kulla17.png" alt="Kulla17"></p>
+<p>&#x5176;&#x4E2D;&#xFF0C;E&#x662F;&#x5F53;f<sub>0</sub> = 1&#x65F6;&#xFF0C;&#x955C;&#x9762;&#x53CD;&#x5C04;&#x5206;&#x91CF;f<sub>r</sub>&#x7684;&#x5B9A;&#x5411;&#x53CD;&#x5C04;&#x7387;&#x3002;<br><img src="../../assets/material/4.7/24.png" alt="24"></p>
+<p>E<sub>avg</sub>&#x662F;E&#x7684;&#x5E73;&#x5747;cos&#x6743;&#x91CD;&#xFF1A;<br><img src="../../assets/material/4.7/25.png" alt="25"></p>
+<p>F<sub>avg</sub>&#x662F;&#x83F2;&#x6D85;&#x5C14;&#x9879;&#x7684;&#x5E73;&#x5747;cos&#x6743;&#x91CD;&#xFF1A;<br><img src="../../assets/material/4.7/24.png" alt="24"></p>
+<p>E&#x548C;E<sub>avg</sub>&#x90FD;&#x80FD;&#x88AB;&#x63D0;&#x524D;&#x8BA1;&#x7B97;&#x597D;&#xFF0C;&#x5E76;&#x5B58;&#x5728;&#x67E5;&#x8BE2;&#x8868;&#x4E2D;&#x3002;&#x540C;&#x65F6;&#xFF0C;F<sub>avg</sub>&#x4E5F;&#x80FD;&#x7528;Schlick&#x8FD1;&#x4F3C;&#x5927;&#x5927;&#x7B80;&#x5316;&#x3002;<br><img src="../../assets/material/4.7/27.png" alt="27"></p>
+<p>&#x5C06;&#x8FD9;&#x4E2A;&#x65B0;lobe&#x4E0E;&#x539F;&#x6765;&#x7684;&#x5355;&#x53CD;&#x5C04;lobe&#x7ED3;&#x5408;&#xFF1A;<br><img src="../../assets/material/4.7/28.png" alt="28"> </p>
+<p>F<sub>avg</sub>&#x53EF;&#x4EE5;&#x88AB;&#x7B80;&#x5316;&#x6210;f<sub>0</sub>,&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;GGX&#x9AD8;&#x5149;lobe&#x6765;&#x8FDB;&#x884C;&#x80FD;&#x91CF;&#x8865;&#x507F;&#x3002;<br><img src="../../assets/material/4.7/29.png" alt="29"><br>&#x5173;&#x952E;&#x662F;E(l)&#x4E0D;&#x4EC5;&#x4EC5;&#x80FD;&#x591F;&#x88AB;&#x63D0;&#x524D;&#x8BA1;&#x7B97;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x4E0E;&#x57FA;&#x4E8E;&#x56FE;&#x50CF;&#x7684;&#x7167;&#x660E;&#x9884;&#x96C6;&#x6210;&#x8FDB;&#x884C;&#x5171;&#x4EAB;&#x3002;&#x6700;&#x540E;&#xFF0C;&#x591A;&#x53CD;&#x5C04;&#x80FD;&#x91CF;&#x8865;&#x507F;&#x516C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;<br><img src="../../assets/material/4.7/30.png" alt="30"><br>r&#x88AB;&#x5B9A;&#x4E49;&#x4E3A;&#xFF1A;<br><img src="../../assets/material/4.7/31.png" alt="31"></p>
+<p><span id="Kulla17">[Kulla17] Christopher Kulla and Alejandro Conty. 2017. Revisiting Physically Based Shading at Imageworks. ACM SIGGRAPH 2017
+</span></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="4.6StandardModelSummary.html" class="navigation navigation-prev " aria-label="Previous page: 镜面BRDF">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../gitbook.md" class="navigation navigation-next " aria-label="Next page: 构建">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"镜面BRDF","level":"1.2.1.1.7","depth":4,"next":{"title":"构建","level":"1.2.2","depth":2,"path":"web/gitbook.md","ref":"web/gitbook.md","articles":[]},"previous":{"title":"镜面BRDF","level":"1.2.1.1.6","depth":4,"path":"web/theory/material/4.6StandardModelSummary.md","ref":"web/theory/material/4.6StandardModelSummary.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"web/theory/material/4.7ImprovingTheBRDFs.md","mtime":"2019-09-11T15:19:56.483Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-11T15:23:41.979Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
