@@ -31,6 +31,9 @@ n<sub>ior</sub> | 界面的折射率（IOR）
 - 掠射角(grazing angle)
 ![](./assets/basis/grazingAndIncidenceAngles.png)
 
+## diffuse lobe & specular lobe
+![](./assets/basis/DiffuesLobe&SpecularLobe.jpg)
+
 # Diffuse BRDF
 
 ```
