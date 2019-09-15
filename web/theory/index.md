@@ -42,3 +42,5 @@ n<sub>ior</sub> | 界面的折射率（IOR）
 [SIGGRAPH 2013 Course: Physically Based Shading in Theory and Practice](https://blog.selfshadow.com/publications/s2013-shading-course/)
 
 [Microfacet 模型的反射与折射](https://segmentfault.com/a/1190000000436286)
+
+[opengl-tutorial](http://www.opengl-tutorial.org/cn/)

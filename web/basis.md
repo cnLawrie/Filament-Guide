@@ -5,30 +5,43 @@ Filament 是一个基于物理的渲染(PBR)引擎。
 # 基于物理的渲染
  与传统的实时模型相比，基于物理的渲染是一种渲染方法，可以更准确地表示材质以及它们与光的交互方式。 在PBR方法的核心是分离材料和照明，这让我们更容易创建在所有照明条件下看起来准确的真实模型。
 
+## 模型大致分类
+- 经验模型(Empirical Models):使用基于实验提出的公式对 BRDF 做快速估计。
+- 数据驱动的模型(Data-driven Models):采集真实材质表面在不同光照角度和观察角将 BRDF 按照实 测数据建立查找表，记录在数据库中，以便于快速的查找和计算。
+- 基于物理的模型(Physical-based Models):根据物体表面材料的几何以及光学属性建立反射方程，从 而计算 BRDF，实现极具真实感的渲染效果。
 
 ## 入射角与掠射角
 - 入射角(angle of incidence)
 - 掠射角(grazing angle)
-![](./assets/basis/grazingAndIncidenceAngles.png)
+![grazingAndIncidenceAngles](./assets/basis/grazingAndIncidenceAngles.png)
 
 ## diffuse lobe & specular lobe
-![](./assets/basis/DiffuesLobe&SpecularLobe.jpg)
+![DiffuesLobe&SpecularLobe](./assets/basis/DiffuesLobe&SpecularLobe.jpg)
 
 ## 在图形学中什么是lobe
-lobe是定义在直角坐标或极坐标中函数的一个峰值。如cos函数，在0或2pi可以取得峰值。
-在照明中，lobe通常对应于反射光的方向，越高的lobe意味着更多的光量。
+lobe是定义在直角坐标或极坐标中函数的一个峰值。如cos函数，在0或2pi可以取得峰值。  
+在照明中，lobe通常对应于反射光的方向，越高的lobe意味着更多的光量。  
+我们通常把lobe译为波瓣。如下图。对 于给定方向的入射光来说，图中显示了出射光的能力分布:在交点附近球形部分是漫反射分 量，因此出射光来任何方向上的反射概率相等。椭圆部分是一个反射波瓣(Reflectance Lobe)。它形成了镜面分量。显然，这些波瓣位于入射光的反射方向上，波瓣厚度对应反射 的模糊性。根据互易原理，可以将这些相同的可视化形成认为是每个不同入射光方向对单个 出射方向的贡献量大小。
+
+![lobe](./assets/basis/lobe.png)
 
 ## 色差
 色差是源于不同波长的光线在玻璃里的色散和折射系数的差异，从而导致不同波长的光线有不同的焦点。
 
-# Diffuse BRDF
+## 切线和副切线（Tangent and Bitangent）
 
-```
-float Fd_Lambert() {
-    return 1.0 / PI;
-}
+下图中蓝色箭头代表法线
 
-vec3 Fd = diffuseColor * Fd_Lambert();
-```
+![NormalVector](./assets/basis/NormalVector.png)
 
+然后是切线T：垂直于法线的向量。但这样的切线有很多个：
 
+![TangentVectors](./assets/basis/TangentVectors.png)
+
+这么多切线中该选哪个呢？理论上哪一个都行。但我们必须保持连续一致性，以免衔接处出现瑕疵。标准的做法是将切线方向和纹理空间对齐：
+
+![TangentVectorFromUVs](./assets/basis/TangentVectorFromUVs.png)
+
+定义一组基需要三个向量，因此我们还得计算副切线B（本可以随便选一条切线，但选定垂直于另外两条轴的切线，计算会方便些），可以将原来的两个向量叉乘得到。
+
+![NTBFromUVs](./assets/basis/NTBFromUVs.png)
