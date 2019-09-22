@@ -51,3 +51,14 @@ lobe是定义在直角坐标或极坐标中函数的一个峰值。如cos函数�
 
 ![300px-Angular_diameter](./assets/basis/300px-Angular_diameter.jpg)
 
+## 切线空间(tangent space)
+直观地讲，模型顶点中的纹理坐标，就定义于切线空间。普通2维纹理坐标包含U、V两项，其中U坐标增长的方向， 即切线空间中的tangent轴，V坐标增加的方向，为切线空间中的bitangent轴。模型中不同的三角形，都有对应的切线空间，其tangent轴和bitangent轴分别位于三角形所在平面上，结合三角形面对应的法线，我们称tangant轴（T）、bitangent轴（B）及法线轴（N）所组成的坐标系，即切线空间（TBN）。
+
+![tangent-space](./assets/basis/tangent-space.png)
+
+在立方体中，每个面都有对应的切线空间，每个面由两个三角形组成，该两个三角形中的纹理坐标就基于相应的切线空间。
+
+### 纹理坐标与位置坐标的关系  
+纹理坐标与位置坐标，可以通过切线空间联系起来。如下图所示：
+
+![tangent-space-uv](./assets/basis/tangent-space-uv.png)
