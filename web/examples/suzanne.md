@@ -168,11 +168,13 @@ class App {
 }
 ```
 
+我们会使用10个下载好的资源，但App构造函数中只会用到4个。其他六个就在构造函数后下载。
+
 下一步，因为不同的客户端对压缩纹理的兼容性不同，我们需要给url提供不同版本的资源。
 
-我们只需要下载当前平台所需要的压缩纹理，Filament提供了**getSupportedFormatSuffix**方法。这需要一个需求格式的列表(etc,s3tc或astc)。这个方法会在需求格式集合和支持格式集合取交集，然后返回一个正确的格式字符串，这个字符串可能为空字符串。
+我们只需要下载当前平台所需要的压缩纹理，Filament提供了**getSupportedFormatSuffix**方法。它的参数是一个需求格式的列表(etc,s3tc或astc)，开发者知道服务器有这些格式的资源。这个方法会在需求格式集合和支持格式集合取交集，然后返回一个正确的格式字符串，这个字符串可能为空字符串。
 
-在这个demo中，我们知道web服务器有用于IBL的etc和s3tc版本，用于反照率的astc和s3tc版本，以及用于其他纹理的其他版本。未压缩版本通常作为最后选择。继续使用以下代码段替换声明资源URLs。
+在这个demo中，我们知道web服务器IBL有etc和s3tc版本，反照率有astc和s3tc版本，以及用于其他纹理的其他版本。未压缩版本通常作为最后选择。继续使用以下代码段替换声明资源URLs。
 
 ```
 const ibl_suffix = Filament.getSupportedFormatSuffix('etc s3tc');
@@ -192,12 +194,21 @@ const filamat_url = 'textured.filamat';
 const filamesh_url = 'suzanne.filamesh';
 ```
 
+
 ## 创建天空盒和IBL
 
 下一步，让我们在App构造函数中新建低精度的天空盒与IBL。
 
 ```
-
+this.skybox = this.engine.createSkyFromKtx(sky_small_url);
+this.scene.setSkybox(this.skybox);
+this.indirectLight = this.engine.createIblFromKtx(ibl_url);
+this.indirectLight.setIntensity(100000);
+this.scene.setIndirectLight(this.indirectLight);
 ```
 
+## 异步获取资源
 
+下一步，我们会在构造函数内调用Filament.fetch方法。这个方法跟Filament.init很像，接受一串资源URL还有一个在资源下载后调用的回调函数。
+
+在回调函数内，材质实例会调用几个setTextureParameter,然后我们会用更高分辨率的材质重新创建太空盒。最后一步，我们会把之前在构造函数内创建的renderable显示出来。
