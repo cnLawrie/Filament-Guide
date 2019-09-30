@@ -21,12 +21,12 @@ f | BRDF
 f<sub>d</sub> | BRDF的漫反射分量
 f<sub>r</sub> | BRDF的镜面反射分量
 α | 粗糙度，使用输入perceptualRoughness重新映射
-σ | 漫反射
+σ | 漫反射率
 Ω | 球形域
 f<sub>0</sub> | 掠角的反射率
 f<sub>90</sub> | 入射余角的反射率
 χ+(a) | Heaviside函数（如果a> 0则为1，否则为0）
-n<sub>ior</sub> | 界面的折射率（IOR）
+n<sub>ior</sub> | 表面的折射率（IOR）
 ⟨n⋅l⟩ | 点分量夹逼到[0..1]
 ⟨a⟩ | 饱和值（夹逼到[0..1]）
 
